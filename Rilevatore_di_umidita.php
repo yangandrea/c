@@ -37,13 +37,12 @@ class Rilevatore_di_umidita extends Rilevatore implements JsonSerializable
             'valore' => $this->getValore(),
         ];
     }
-    public function getRilevatore($identificativo)
-    {
-        $rilevatori = [];
-        foreach($this->rilevatore as $dispositivos){
-            if($dispositivos->getIdentificativo() == $identificativo)
-                $rilevatori[] = $dispositivos;
+    public function getMisurazioniMaggioreDi($value) {
+        $misurazioniMaggioreDi = [];
+        foreach($this->misurazioni as $misurazione){
+            if($misurazione > $value)
+                $misurazioniMaggioreDi[] = $misurazione;
         }
-        return !empty($rilevatori) ? $rilevatori : null;
+        return $misurazioniMaggioreDi;
     }
 }
